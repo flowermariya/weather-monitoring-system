@@ -1,9 +1,15 @@
-import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsEnum,
+  IsJSON,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class AddLocationDto {
   @IsOptional()
   @IsString()
-  name: string;
+  city_name: string;
 
   @IsOptional()
   @IsString()
@@ -14,10 +20,6 @@ export class AddLocationDto {
   latitude: string;
 
   @IsOptional()
-  @IsString()
-  minTemperature: string;
-
-  @IsOptional()
-  @IsString()
-  maxTemperature: string;
+  @IsJSON()
+  body: JSON;
 }

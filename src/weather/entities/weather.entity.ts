@@ -4,11 +4,11 @@ import mongoose from 'mongoose';
 import { BaseSchema } from './base.schema';
 
 @Schema({ timestamps: true })
-export class Weather extends BaseSchema {
+export class LocationHistory extends BaseSchema {
   _id: mongoose.Types.ObjectId;
 
   @Prop({ nullable: true })
-  name: string;
+  city_name: string;
 
   @Prop({ nullable: true })
   longitude: string;
@@ -16,12 +16,10 @@ export class Weather extends BaseSchema {
   @Prop({ nullable: true })
   latitude: string;
 
-  @Prop({ nullable: true })
-  minTemperature: string;
-
-  @Prop({ nullable: true })
-  maxTemperature: string;
+  @Prop({ type: mongoose.Schema.Types.Mixed })
+  body: any;
 }
 
-export type WeatherDocument = Weather & Document;
-export const WeatherSchema = SchemaFactory.createForClass(Weather);
+export type LocationHistoryDocument = LocationHistory & Document;
+export const LocationHistorySchema =
+  SchemaFactory.createForClass(LocationHistory);
