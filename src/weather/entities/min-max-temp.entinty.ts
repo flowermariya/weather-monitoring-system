@@ -20,10 +20,10 @@ export class MinMaxTemp extends BaseSchema {
   location_name: string;
 
   @Prop({ nullable: true })
-  lat: string;
+  lat: number;
 
   @Prop({ nullable: true })
-  lon: string;
+  lng: number;
 }
 
 export type MinMaxTempDocument = MinMaxTemp & Document;

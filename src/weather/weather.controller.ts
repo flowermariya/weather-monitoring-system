@@ -37,6 +37,11 @@ export class WeatherController {
     return this.weatherService.saveMinMaxTemp(setMinMaxTemp);
   }
 
+  @Get('getMinMaxTemp')
+  getMinMaxTemp() {
+    return this.weatherService.getMinMaxTemp();
+  }
+
   //Get weather information using Weather API
 
   @Get('getCity')

@@ -15,12 +15,10 @@ export class SetMinMaxTemp {
   location_id: string;
 
   @IsNotEmpty()
-  @IsString()
   lat: string;
 
   @IsNotEmpty()
-  @IsString()
-  lon: string;
+  lng: number;
 
   @IsNotEmpty()
   @IsString()

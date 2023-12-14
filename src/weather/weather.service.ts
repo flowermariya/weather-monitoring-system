@@ -70,6 +70,14 @@ export class WeatherService {
     }
   }
 
+  async getMinMaxTemp() {
+    try {
+      return await this.minMaxTempModel.find();
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
+  }
+
   async getCity(search_text: string) {
     try {
       const url = `${process.env.API_URL}/geo/1.0/direct?q=${search_text}&limit=5&appid=${process.env.API_KEY}`;
