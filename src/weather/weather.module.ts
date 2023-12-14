@@ -6,6 +6,7 @@ import {
   LocationHistory,
   LocationHistorySchema,
 } from './entities/weather.entity';
+import { MinMaxTemp, MinMaxTempSchema } from './entities/min-max-temp.entinty';
 
 @Module({
   imports: [
@@ -13,6 +14,10 @@ import {
       {
         name: LocationHistory.name,
         schema: LocationHistorySchema,
+      },
+      {
+        name: MinMaxTemp.name,
+        schema: MinMaxTempSchema,
       },
     ]),
   ],

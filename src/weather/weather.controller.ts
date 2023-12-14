@@ -2,16 +2,15 @@ import { Controller, Get, Post, Body, Delete, Query } from '@nestjs/common';
 import { WeatherService } from './weather.service';
 import { AddLocationDto } from './dto/create-weather.dto';
 import { LocationHistory } from './entities/weather.entity';
+import { SetMinMaxTemp } from './dto/set-min-max-temp.dto';
 
 @Controller('location')
 export class WeatherController {
   constructor(private readonly weatherService: WeatherService) {}
 
-  @Post('add')
-  addLocation(
-    @Body() addLocationDto: AddLocationDto,
-  ): Promise<LocationHistory> {
-    return this.weatherService.addLocation(addLocationDto);
+  @Post('addLocation')
+  addHistory(@Body() addLocationDto: AddLocationDto): Promise<LocationHistory> {
+    return this.weatherService.addHistory(addLocationDto);
   }
 
   @Get('getAll')
@@ -19,19 +18,26 @@ export class WeatherController {
     return this.weatherService.getAllLocations();
   }
 
-  @Get()
+  @Get('getLocation')
   getLocation(
     @Query('locationId') locationId: string,
   ): Promise<LocationHistory> {
     return this.weatherService.getLocation(locationId);
   }
 
-  @Delete('')
-  deleteLocation(@Query('locationId') locationId: string) {
-    return this.weatherService.deleteLocation(locationId);
+  @Delete('deleteHistory')
+  deleteHistory(@Query('locationId') locationId: string) {
+    return this.weatherService.deleteHistory(locationId);
   }
 
-  //Get weather information
+  // API to save min and max temperature of a city
+
+  @Post('saveMinMaxTemp')
+  saveMinMaxTemp(@Body() setMinMaxTemp: SetMinMaxTemp) {
+    return this.weatherService.saveMinMaxTemp(setMinMaxTemp);
+  }
+
+  //Get weather information using Weather API
 
   @Get('getCity')
   getCity(@Query('search_text') search_text: string) {

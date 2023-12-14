@@ -7,6 +7,11 @@ import {
 } from './entities/weather.entity';
 import { Model } from 'mongoose';
 import axios from 'axios';
+import { SetMinMaxTemp } from './dto/set-min-max-temp.dto';
+import {
+  MinMaxTemp,
+  MinMaxTempDocument,
+} from './entities/min-max-temp.entinty';
 const dayjs = require('dayjs');
 
 @Injectable()
@@ -14,9 +19,11 @@ export class WeatherService {
   constructor(
     @InjectMongooseModel(LocationHistory.name)
     private weatherModel: Model<LocationHistoryDocument>,
+    @InjectMongooseModel(MinMaxTemp.name)
+    private minMaxTempModel: Model<MinMaxTempDocument>,
   ) {}
 
-  async addLocation(addLocationDto: AddLocationDto): Promise<LocationHistory> {
+  async addHistory(addLocationDto: AddLocationDto): Promise<LocationHistory> {
     try {
       console.log('>>addLocationDto', addLocationDto);
 
@@ -31,7 +38,7 @@ export class WeatherService {
 
   async getAllLocations() {
     try {
-      return await this.weatherModel.find();
+      return await this.weatherModel.find().sort({ createdAt: -1 });
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
@@ -45,9 +52,19 @@ export class WeatherService {
     }
   }
 
-  async deleteLocation(locationId: string) {
+  async deleteHistory(locationId: string) {
     try {
       return await this.weatherModel.deleteOne({ _id: locationId });
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  async saveMinMaxTemp(setMinMaxTemp: SetMinMaxTemp) {
+    try {
+      const newLocation = new this.minMaxTempModel(setMinMaxTemp);
+      newLocation.save();
+      return newLocation;
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
