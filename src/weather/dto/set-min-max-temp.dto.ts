@@ -1,14 +1,11 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class SetMinMaxTemp {
-  @IsNotEmpty()
   @IsString()
-  min_temp: string;
+  min_temp: number;
 
-  @IsNotEmpty()
   @IsString()
-  max_temp: string;
+  max_temp: number;
 
   @IsNotEmpty()
   @IsString()

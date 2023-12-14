@@ -8,10 +8,10 @@ export class MinMaxTemp extends BaseSchema {
   _id: mongoose.Types.ObjectId;
 
   @Prop({ nullable: true })
-  min_temp: string;
+  min_temp: number;
 
   @Prop({ nullable: true })
-  max_temp: string;
+  max_temp: number;
 
   @Prop({ nullable: true })
   location_id: string;
