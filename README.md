@@ -1,42 +1,40 @@
-Weather Monitoring System API
-Overview
-This API suite enables effective weather data management and forecasting. It offers CRUD operations, weather forecast fetching based on geographic coordinates, and setting min/max temperature thresholds for alerts.
+# Weather Monitoring System API
 
-Key Features
-Basic CRUD Operations: Manage weather data entries.
-Weather Forecast Fetching: Access real-time weather information by city name or coordinates.
-Temperature Alerts: Set and receive alerts based on temperature thresholds.
-Getting Started
-Prerequisites: Ensure you have Node.js and a database (e.g., MongoDB) installed.
-Installation: Clone the repository and run npm install to install dependencies.
-Environment Setup: Set your environment variables in a .env file, including your database connection and any third-party API keys (e.g., OpenWeatherMap API key).
-Running the Application
-Start the server with npm start. The API will be available at http://localhost:3000.
-API Endpoints
-addLocation: Save searched location data.
+## Overview
+This API provides effective weather data management and forecasting, including CRUD operations, weather forecasts by coordinates, and temperature alert settings.
 
-Method: POST
-Endpoint: /location/add
-Body: { "name": "Location Name", "lat": Latitude, "lon": Longitude }
-getAllLocations: Fetch all saved locations.
+## Features
+- CRUD Operations for weather data.
+- Weather Forecast by city or coordinates.
+- Temperature Alerts based on min/max thresholds.
 
-Method: GET
-Endpoint: /location/getAll
-getWeatherForecast: Retrieve weather forecast.
+## Installation
+1. Clone the repository.
+2. Install dependencies: `npm install`.
+3. Set up `.env` with database and API keys.
 
-Method: GET
-Endpoint: /weather/forecast
-Query Params: lat, lon, days
-saveMinMaxTemp: Set temperature alerts.
+## Running the Application
+Run `npm start`. The API is at `http://localhost:3000`.
 
-Method: POST
-Endpoint: /temp/setMinMax
-Body: { "min_temp": MinTemp, "max_temp": MaxTemp, "lat": Latitude, "lon": Longitude }
-getMinMaxTemp: Get temperature data with deviations.
+## Endpoints
+### addLocation
+- POST `/location/add`
+- Body: `{ "name": "Location Name", "lat": Latitude, "lon": Longitude }`
 
-Method: GET
-Endpoint: /temp/getMinMax
-Support
-For any issues or questions, refer to our FAQ or contact support.
+### getAllLocations
+- GET `/location/getAll`
 
-This README provides a basic guide to get started with the Weather Monitoring System API, covering installation, setup, and usage of key endpoints. Adjust and 
+### getWeatherForecast
+- GET `/weather/forecast`
+- Params: `lat`, `lon`, `days`
+
+### saveMinMaxTemp
+- POST `/temp/setMinMax`
+- Body: `{ "min_temp": MinTemp, "max_temp": MaxTemp, "lat": Latitude, "lon": Longitude }`
+
+### getMinMaxTemp
+- GET `/temp/getMinMax`
+
+## Support
+For support, refer to the FAQ or contact us.
+
