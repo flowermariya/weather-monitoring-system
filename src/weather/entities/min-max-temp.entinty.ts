@@ -14,9 +14,6 @@ export class MinMaxTemp extends BaseSchema {
   max_temp: number;
 
   @Prop({ nullable: true })
-  location_id: string;
-
-  @Prop({ nullable: true })
   location_name: string;
 
   @Prop({ nullable: true })

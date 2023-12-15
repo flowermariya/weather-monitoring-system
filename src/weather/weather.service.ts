@@ -25,11 +25,7 @@ export class WeatherService {
 
   async addHistory(addLocationDto: AddLocationDto): Promise<LocationHistory> {
     try {
-      console.log('>>addLocationDto', addLocationDto);
-
       const location = new this.weatherModel(addLocationDto);
-      console.log('>>location', location);
-
       return await location.save();
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
@@ -94,12 +90,9 @@ export class WeatherService {
       const weatherUrl = `${process.env.API_URL}/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}`;
       const currentWeather = await axios.get(weatherUrl);
 
-      console.log('>>currentWeather', currentWeather?.data);
-
       const foreCastDict = {};
 
       currentWeather?.data?.list?.map((item) => {
-        console.log('>>item', item.dt);
         const dateTime = item?.dt + '000';
 
         let formattedDate = dayjs(parseInt(dateTime)).format('DD-MM-YYYY');
