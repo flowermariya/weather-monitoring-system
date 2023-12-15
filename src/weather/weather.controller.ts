@@ -8,7 +8,7 @@ import { SetMinMaxTemp } from './dto/set-min-max-temp.dto';
 export class WeatherController {
   constructor(private readonly weatherService: WeatherService) {}
 
-  @Post('addLocation')
+  @Post('add')
   addHistory(@Body() addLocationDto: AddLocationDto): Promise<LocationHistory> {
     return this.weatherService.addHistory(addLocationDto);
   }
@@ -18,14 +18,14 @@ export class WeatherController {
     return this.weatherService.getAllLocations();
   }
 
-  @Get('getLocation')
+  @Get()
   getLocation(
     @Query('locationId') locationId: string,
   ): Promise<LocationHistory> {
     return this.weatherService.getLocation(locationId);
   }
 
-  @Delete('deleteHistory')
+  @Delete('delete')
   deleteHistory(@Query('locationId') locationId: string) {
     return this.weatherService.deleteHistory(locationId);
   }

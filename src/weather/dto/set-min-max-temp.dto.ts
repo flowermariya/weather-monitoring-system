@@ -8,10 +8,6 @@ export class SetMinMaxTemp {
   max_temp: number;
 
   @IsNotEmpty()
-  @IsString()
-  location_id: string;
-
-  @IsNotEmpty()
   lat: string;
 
   @IsNotEmpty()
