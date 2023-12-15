@@ -50,7 +50,11 @@ export class WeatherController {
   }
 
   @Get('getWeatherForecast')
-  getWeatherForecast(@Query('lat') lat: string, @Query('lon') lon: string) {
-    return this.weatherService.getWeatherForecast(lat, lon);
+  getWeatherForecast(
+    @Query('lat') lat: string,
+    @Query('lon') lon: string,
+    @Query('days') days: string,
+  ) {
+    return this.weatherService.getWeatherForecast(lat, lon, days);
   }
 }

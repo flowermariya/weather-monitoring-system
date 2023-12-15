@@ -60,6 +60,8 @@ export class WeatherService {
     try {
       const newLocation = new this.minMaxTempModel(setMinMaxTemp);
       newLocation.save();
+      console.log('>>newLocation', newLocation);
+
       return newLocation;
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
@@ -85,7 +87,7 @@ export class WeatherService {
     }
   }
 
-  async getWeatherForecast(lat: string, lon: string) {
+  async getWeatherForecast(lat: string, lon: string, days: string) {
     try {
       const weatherUrl = `${process.env.API_URL}/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}`;
       const currentWeather = await axios.get(weatherUrl);
@@ -101,14 +103,18 @@ export class WeatherService {
         }
       });
 
-      const forecastArray = Object.keys(foreCastDict).map((key) => {
-        return {
-          key: key,
-          ...foreCastDict[key],
-        };
+      const forecastArray = Object.keys(foreCastDict).map((key, index) => {
+        if (index < parseInt(days)) {
+          return {
+            key: key,
+            ...foreCastDict[key],
+          };
+        }
       });
 
-      return forecastArray;
+      console.log('>>forecastArray', forecastArray);
+
+      return forecastArray.filter((a) => a);
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
