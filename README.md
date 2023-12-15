@@ -11,30 +11,14 @@ This API provides effective weather data management and forecasting, including C
 ## Installation
 1. Clone the repository.
 2. Install dependencies: `npm install`.
-3. Set up `.env` with database and API keys.
+3. Set up `.env` with database and API keys using sample .env.template file
+4. Build the project: npm run build
+6. Start the server: npm start
+7. For development, you can use: npm run start:dev
 
 ## Running the Application
-Run `npm start`. The API is at `http://localhost:3000`.
+Run `npm start`. The API is at `https://weather-monitoring-system.onrender.com
+`.
 
-## Endpoints
-### addLocation
-- POST `/location/add`
-- Body: `{ "name": "Location Name", "lat": Latitude, "lon": Longitude }`
-
-### getAllLocations
-- GET `/location/getAll`
-
-### getWeatherForecast
-- GET `/weather/forecast`
-- Params: `lat`, `lon`, `days`
-
-### saveMinMaxTemp
-- POST `/temp/setMinMax`
-- Body: `{ "min_temp": MinTemp, "max_temp": MaxTemp, "lat": Latitude, "lon": Longitude }`
-
-### getMinMaxTemp
-- GET `/temp/getMinMax`
-
-## Support
-For support, refer to the FAQ or contact us.
-
+## More advanced documentation
+https://documenter.getpostman.com/view/13185811/2s9Ykkgigw
